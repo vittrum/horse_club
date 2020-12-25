@@ -17,7 +17,7 @@ class Stable(models.Model):
 
 class Horse(models.Model):
     nickname = models.CharField(max_length=50)
-    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Owner, related_name='horses', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nickname

@@ -1,5 +1,7 @@
 from django.urls import path, include
 
 urlpatterns = [
-    path('horses/', ),
+    path('users/', include('api.user.urls')),
+    path('horses/', include('api.horse.urls')),
+
 ]
