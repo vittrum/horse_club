@@ -36,10 +36,10 @@ class ClientSubscriptionSerializer(serializers.ModelSerializer):
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
-    trainer = UserSerializer()
-    horse = HorseSerializer()
-    subscription = ClientSubscriptionSerializer()
+    trainer = serializers.StringRelatedField()#UserSerializer()
+    horse = serializers.StringRelatedField()#HorseSerializer()
+    client_subscription = serializers.StringRelatedField()#ClientSubscriptionSerializer()
 
     class Meta:
         model = Schedule
-        field = '__all__'
+        fields = '__all__'

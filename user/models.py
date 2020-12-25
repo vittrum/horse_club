@@ -71,5 +71,8 @@ class UserProfile(models.Model):
     phone_number = models.CharField(max_length=10, unique=True, null=False, blank=False)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} {self.role.name}'
+
     class Meta:
         db_table = "profiles"
