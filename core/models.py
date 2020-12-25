@@ -1,9 +1,8 @@
 from django.db import models
-import datetime
 
 # Create your models here.
 from horse.models import Horse
-from user.models import Client, Trainer
+from user.models import UserProfile
 
 
 class Discipline(models.Model):
@@ -40,10 +39,10 @@ class Subscription(models.Model):
         db_table = 'subscriptions'
 
 
-class ClientSubscriptions(models.Model):
+class ClientSubscription(models.Model):
     purchase_date = models.DateTimeField('''default=datetime.datetime.now()''')
     subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     available_lessons = models.IntegerField()
 
     def __str__(self):
@@ -57,8 +56,8 @@ class Schedule(models.Model):
     date = models.DateTimeField()
     begin_time = models.TimeField()
     end_time = models.TimeField(null=True)
-    client_subscription = models.ForeignKey(ClientSubscriptions, on_delete=models.CASCADE)
-    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+    client_subscription = models.ForeignKey(ClientSubscription, on_delete=models.CASCADE)
+    trainer = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
 
     def __str__(self):
