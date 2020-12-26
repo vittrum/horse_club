@@ -5,7 +5,7 @@ from api.user.views import UserRegistrationView, UserLoginView
 urlpatterns = [
     path('users/', include('api.user.urls')),
     path('horses/', include('api.horse.urls')),
-    path('core/', include('api.core.urls')),
+    path('', include('api.core.urls')),
 
     # register
     path('signup/', UserRegistrationView.as_view()),

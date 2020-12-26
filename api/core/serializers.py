@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from api.horse.serializers import HorseSerializer
 from api.user.serializers import UserSerializer
 from core.models import Schedule, Subscription, ClientSubscription, Plan, Discipline
 
