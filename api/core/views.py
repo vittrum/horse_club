@@ -3,7 +3,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from api.core.serializers import ScheduleSerializer, \
-    SubscriptionSerializer, PlanSerializer, DisciplineSerializer
+    SubscriptionSerializer, PlanSerializer, DisciplineSerializer, ScheduleCreateSerializer, \
+    ClientSubscriptionCreateSerializer
 from core.models import Schedule, Subscription, Plan, Discipline
 
 
@@ -44,4 +45,19 @@ class PlanListView(generics.ListAPIView):
     serializer_class = PlanSerializer
     queryset = Plan.objects.all()
     permission_classes = (AllowAny,)
+
+
+class ScheduleCreateView(generics.CreateAPIView):
+    serializer_class = ScheduleCreateSerializer
+    queryset = Schedule.objects.all()
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+
+
+class ClientSubscriptionCreateView(generics.CreateAPIView):
+    serializer_class = ClientSubscriptionCreateSerializer
+    queryset = Schedule.objects.all()
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+
 

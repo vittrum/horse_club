@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
+from django_filters import rest_framework as filters
 
 from api.horse.serializers import HorseSerializer
 from horse.models import Horse

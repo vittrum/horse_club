@@ -1,17 +1,24 @@
 from rest_framework import generics
-from rest_framework import status
+from rest_framework import status, filters
 from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from django_filters import rest_framework as rest_filters
 
-from api.user.serializers import OwnerSerializer, OwnerDetailSerializer, UserRegistrationSerializer, UserLoginSerializer
+from api.user.serializers import OwnerSerializer, OwnerDetailSerializer, \
+    UserRegistrationSerializer, UserLoginSerializer
 from user.models import Owner
 
 
 class OwnerListView(generics.ListAPIView):
     serializer_class = OwnerSerializer
     queryset = Owner.objects.all()
+    permission_classes = (AllowAny,)
+    #filter_backends = [filters.SearchFilter]
+    #search_fields = ['name', 'surname']
+    filters_backends = (rest_filters.DjangoFilterBackend,)
+    filterset_fields = ['name', 'surname']
 
 
 class OwnerDetailView(generics.RetrieveAPIView):

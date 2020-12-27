@@ -34,11 +34,23 @@ class ClientSubscriptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ClientSubscriptionCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClientSubscription
+        fields = '__all__'
+
+
 class ScheduleSerializer(serializers.ModelSerializer):
     trainer = serializers.StringRelatedField()#UserSerializer()
     horse = serializers.StringRelatedField()#HorseSerializer()
     client_subscription = serializers.StringRelatedField()#ClientSubscriptionSerializer()
 
+    class Meta:
+        model = Schedule
+        fields = '__all__'
+
+
+class ScheduleCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schedule
         fields = '__all__'

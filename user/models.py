@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
+
 class Owner(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
